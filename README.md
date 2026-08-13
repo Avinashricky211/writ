@@ -1,8 +1,10 @@
 # writ
 
-A Claude skill that catches AI writing tells before you hit send.
+A self-edit checklist skill that catches AI writing tells before you hit send.
 
-`writ` turns Wikipedia's community-maintained [Signs of AI Writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing) guide into a self-edit checklist. Wikipedia editors built the original guide after reviewing thousands of AI-generated submissions and cataloguing what gave them away. No single item on the list proves AI authorship. It's a combined signal, and applying it well means reading the genre, not just running the list mechanically.
+`writ` turns Wikipedia's community-maintained [Signs of AI Writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing) guide into a working checklist. Wikipedia editors built the original guide after reviewing thousands of AI-generated submissions and cataloguing what gave them away. No single item on the list proves AI authorship. It's a combined signal, and applying it well means reading the genre, not just running the list mechanically.
+
+Works with any agent or framework that supports loadable skills, system prompts, or custom instructions — not tied to a specific model or platform.
 
 ## What it catches
 
@@ -20,21 +22,21 @@ A Claude skill that catches AI writing tells before you hit send.
 
 ## Install
 
-Copy the `writ/` folder into your Claude skills directory:
+The skill lives in `writ/SKILL.md`. How you load it depends on your agent setup:
 
-```bash
-cp -r writ/ /mnt/skills/user/writ/
-```
+- **Skill-based agents** (e.g. tools with a skills directory): copy the `writ/` folder into wherever your agent looks for skills.
+- **System-prompt-based agents**: paste the contents of `writ/SKILL.md` into your system prompt or instructions field.
+- **Custom pipelines**: read `writ/SKILL.md` at runtime and inject it as context before any writing/editing task.
 
-Claude picks it up automatically on long-form writing tasks, and whenever someone asks to "make this sound more human" or "remove AI tells."
+Trigger conditions are described in the frontmatter — adapt them to however your agent handles skill routing or triggering.
 
 ## Usage
 
-Write or paste a draft and ask Claude to revise it. Or just say:
+Give your agent a draft and ask it to revise it, or say something like:
 
 > "Rewrite this so it doesn't sound AI-generated."
 
-The checklist runs as a silent self-edit pass. Claude won't narrate it back to you.
+The checklist is meant to run as a silent self-edit pass — the agent applies it and delivers clean output, without narrating the process back to you.
 
 ## Notes
 
